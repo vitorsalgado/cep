@@ -1,0 +1,21 @@
+{
+  "name": "cep git://github.com/vitorsalgado/cep.git",
+  "version": "0.0.1",
+  "homepage": "https://github.com/vitorsalgado/cep",
+  "authors": [
+    "Vitor Hugo Salgado <vsalgadopb@gmail.com>"
+  ],
+  "description": "",
+  "license": "GNU GENERAL PUBLIC LICENSE Version 2",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4"
+  }
+}

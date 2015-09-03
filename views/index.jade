@@ -1,0 +1,32 @@
+extends layout
+
+block content
+    .container
+        .page-header
+            h1 CEP Query Service
+        .row
+            .alert.alert-warning#error-container(role='alert')
+            .input-group.input-group-lg
+                input.form-control#txt-cep(type='text', placeholder='type your CEP here')
+                span.input-group-btn
+                    button.btn.btn-default#btn-search(type='button') Search
+
+    .container#container-results
+        h2 Query Results
+        .row
+            table.table
+                tr
+                    th CEP
+                    th Logradouro
+                    th Bairro
+                    th Cidade
+                    th UF
+                tr
+                    td#td-cep
+                    td#td-logradouro
+                    td#td-bairro
+                    td#td-cidade
+                    td#td-uf
+        h2 Json Data
+        .row
+            pre#json-data
