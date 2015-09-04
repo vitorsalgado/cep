@@ -34,12 +34,8 @@ var CepService = function () {
                         message: errorContainer.text().trim()
                     };
                 } else {
-                    var address = buildAddressFromCep($);
-
-                    json = {
-                        success: true,
-                        data: address
-                    };
+                    json = buildAddressFromCep($);
+                    json.success = true;
                 }
             } else {
                 json = {

@@ -16,7 +16,11 @@ $(document).ready(function () {
 });
 
 function queryCep(){
-    var cep = $('#txt-cep').val();
+    var txtCep = $('#txt-cep');
+    var body = $('html');
+    var btnQuery = $('#btn-search');
+
+    var cep = txtCep.val();
     var errorContainer = $('#error-container');
     var resultsContainer = $('#container-results');
 
@@ -28,18 +32,22 @@ function queryCep(){
             .html('Por favor, informe o CEP corretamente. Ex.: 11750000 ou 11750-000')
             .show();
     }else{
+        body.css('cursor', 'wait');
+        txtCep.css('cursor', 'wait');
+        btnQuery.css('cursor', 'wait');
+
         $.ajax({
             url: '/cep/' + cep,
             method: 'GET',
             dataType: 'json',
             contentType: 'application/json',
             success: function (response) {
-                $('#td-cep').html(response.data.cep);
-                $('#td-logradouro').html(response.data.logradouro);
-                $('#td-bairro').html(response.data.bairro);
-                $('#td-cidade').html(response.data.cidade);
-                $('#td-uf').html(response.data.uf);
-                $('#json-data').html(JSON.stringify(response.data));
+                $('#td-cep').html(response.cep);
+                $('#td-logradouro').html(response.logradouro);
+                $('#td-bairro').html(response.bairro);
+                $('#td-cidade').html(response.cidade);
+                $('#td-uf').html(response.uf);
+                $('#json-data').html(JSON.stringify(response));
 
                 errorContainer.hide();
                 resultsContainer.show();
@@ -49,6 +57,11 @@ function queryCep(){
                     .html(response.message)
                     .show();
                 resultsContainer.hide();
+            },
+            complete: function(){
+                body.css('cursor', 'default');
+                txtCep.css('cursor', 'default');
+                btnQuery.css('cursor', 'default');
             }
         });
 
