@@ -5,17 +5,17 @@ $(document).ready(function () {
         queryCep();
     });
 
-    $('#txt-cep').keydown(function(e){
+    $('#txt-cep').keydown(function (e) {
         var keyCode = (event.keyCode ? event.keyCode : event.which);
 
-        if(keyCode == '13'){
+        if (keyCode == '13') {
             queryCep();
         }
     });
 
 });
 
-function queryCep(){
+function queryCep() {
     var txtCep = $('#txt-cep');
     var body = $('html');
     var btnQuery = $('#btn-search');
@@ -27,11 +27,11 @@ function queryCep(){
     errorContainer.hide();
     resultsContainer.hide();
 
-    if ((cep == '' || cep == null || typeof cep == 'undefined') ||cep.length < 8 || cep.length > 9) {
+    if ((cep == '' || cep == null || typeof cep == 'undefined') || cep.length < 8 || cep.length > 9) {
         errorContainer
             .html('Por favor, informe o CEP corretamente. Ex.: 11750000 ou 11750-000')
             .show();
-    }else{
+    } else {
         body.css('cursor', 'wait');
         txtCep.css('cursor', 'wait');
         btnQuery.css('cursor', 'wait');
@@ -52,13 +52,13 @@ function queryCep(){
                 errorContainer.hide();
                 resultsContainer.show();
             },
-            error: function(response){
+            error: function (response) {
                 errorContainer
                     .html(response.message)
                     .show();
                 resultsContainer.hide();
             },
-            complete: function(){
+            complete: function () {
                 body.css('cursor', 'default');
                 txtCep.css('cursor', '');
                 btnQuery.css('cursor', 'pointer');
