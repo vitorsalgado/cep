@@ -60,8 +60,8 @@ function queryCep(){
             },
             complete: function(){
                 body.css('cursor', 'default');
-                txtCep.css('cursor', 'default');
-                btnQuery.css('cursor', 'default');
+                txtCep.css('cursor', '');
+                btnQuery.css('cursor', 'pointer');
             }
         });
 
