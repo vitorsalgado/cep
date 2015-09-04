@@ -1,5 +1,5 @@
 {
-  "name": "Cep Hack",
+  "name": "cep-hack",
   "description": "Brazilian CEP query interface and api",
   "version": "0.0.1",
   "private": true,
