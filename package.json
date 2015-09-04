@@ -6,6 +6,7 @@
   "author": "Vitor Hugo Salgado <vsalgadopb@gmail.com>",
   "license": "GNU GENERAL PUBLIC LICENSE Version 2",
   "scripts": {
+    "postinstall": "bower install --save",
     "start": "node app"
   },
   "dependencies": {
