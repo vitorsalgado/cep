@@ -5,14 +5,15 @@ $(document).ready(function () {
         queryCep();
     });
 
-    $('#txt-cep').keydown(function (e) {
-        var keyCode = (event.keyCode ? event.keyCode : event.which);
+    $('#txt-cep')
+        .keydown(function (e) {
+            var keyCode = (event.keyCode ? event.keyCode : event.which);
 
-        if (keyCode == '13') {
-            queryCep();
-        }
-    });
-
+            if (keyCode == '13') {
+                queryCep();
+            }
+        })
+        .focus();
 });
 
 function queryCep() {
@@ -31,6 +32,7 @@ function queryCep() {
         errorContainer
             .html('Por favor, informe o CEP corretamente. Ex.: 11750000 ou 11750-000')
             .show();
+        txtCep.focus();
     } else {
         body.css('cursor', 'wait');
         txtCep.css('cursor', 'wait');
@@ -42,21 +44,22 @@ function queryCep() {
             dataType: 'json',
             contentType: 'application/json',
             success: function (response) {
-                $('#td-cep').html(response.cep);
-                $('#td-logradouro').html(response.logradouro);
-                $('#td-bairro').html(response.bairro);
-                $('#td-cidade').html(response.cidade);
-                $('#td-uf').html(response.uf);
-                $('#json-data').html(JSON.stringify(response));
+                if(response.success) {
+                    $('#td-cep').html(response.cep);
+                    $('#td-logradouro').html(response.logradouro);
+                    $('#td-bairro').html(response.bairro);
+                    $('#td-cidade').html(response.cidade);
+                    $('#td-uf').html(response.uf);
+                    $('#json-data').html(JSON.stringify(response));
 
-                errorContainer.hide();
-                resultsContainer.show();
+                    errorContainer.hide();
+                    resultsContainer.show();
+                }else{
+                    handleError(response.message);
+                }
             },
             error: function (response) {
-                errorContainer
-                    .html(response.message)
-                    .show();
-                resultsContainer.hide();
+                handleError(response.responseJSON.message);
             },
             complete: function () {
                 body.css('cursor', 'default');
@@ -67,4 +70,12 @@ function queryCep() {
 
         errorContainer.hide();
     }
+}
+
+function handleError(message){
+    $('#error-container')
+        .html(message)
+        .show();
+    $('#container-results').hide();
+    $('#txt-cep').focus();
 }

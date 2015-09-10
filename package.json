@@ -1,7 +1,7 @@
 {
   "name": "cep-hack",
-  "description": "Brazilian CEP query interface and api",
-  "version": "0.0.1",
+  "description": "Página Web e Api que utiliza o site dos Correios para realizar consultas de CEP",
+  "version": "1.0.1",
   "private": true,
   "author": "Vitor Hugo Salgado <vsalgadopb@gmail.com>",
   "license": "GNU GENERAL PUBLIC LICENSE Version 2",

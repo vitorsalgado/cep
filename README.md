@@ -13,6 +13,7 @@ Página Web e Api que utiliza o site dos Correios para realizar consultas de CEP
 - Bootstrap
 - Bower
 - Site dos Correios :)
+- Microsoft Azure
 
 ### Instalação
 
