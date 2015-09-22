@@ -63,19 +63,28 @@ function buildAddressFromCep($) {
 
     if (logradouroContainer.length) {
         address.logradouro = logradouroContainer.next().text().trim();
+    } else {
+        address.logradouro = null;
     }
 
     if (bairroContainer.length) {
         address.bairro = bairroContainer.next().text().trim();
+    } else {
+        address.bairro = null;
     }
 
     if (cidadeEstadoContainer.length) {
         address.cidade = cidadeEstadoContainer.next().text().trim().split('/')[0].trim();
         address.uf = cidadeEstadoContainer.next().text().trim().split('/')[1].trim();
+    } else {
+        address.cidade = null;
+        address.uf = null;
     }
 
     if (cepContainer.length) {
         address.cep = cepContainer.next().text().trim();
+    } else {
+        address.cep = null;
     }
 
     return address;
