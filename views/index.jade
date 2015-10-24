@@ -1,39 +1,43 @@
 extends layout
 
 block content
-    .container
-        .page-header
-            h1 Serviço de Consulta de CEP
-        .row
-            .alert.alert-warning#error-container(role='alert')
-            .input-group.input-group-lg
-                input.form-control#txt-cep(type='text', placeholder='digite seu CEP aqui')
-                span.input-group-btn
-                    button.btn.btn-default#btn-search(type='button') Pesquisar
-    .container
-        h2 HTTP Get
-        .row
-            pre
-                span GET /cep/:cep HTTP/1.1
-                br
-                span Host: cephack.azurewebsites.net
+    div(ng-controller="CepController")
+        .overlay(ng-show="loading")
+            p Carregando...
 
-    .container#container-results
-        h2 Resultados
-        .row
-            table.table.table-bordered.table-striped
-                tr
-                    th CEP
-                    th Logradouro
-                    th Bairro
-                    th Cidade
-                    th UF
-                tr.active
-                    td#td-cep
-                    td#td-logradouro
-                    td#td-bairro
-                    td#td-cidade
-                    td#td-uf
-        h2 JSON
-        .row
-            pre#json-data
+        .container
+            .page-header
+                h1 Serviço de Consulta de CEP
+            .row
+                .alert.alert-warning#error-container(role='alert', ng-show="showErrors") {{errorContent}}
+                .input-group.input-group-lg
+                    input.form-control#txt-cep(type='text', ng-model="cepText", placeholder='digite seu CEP aqui', focus-on="focus", ng-blur="focus=false", ng-keydown="$event.which === 13 && getCep()")
+                    span.input-group-btn
+                        button.btn.btn-default#btn-search(type='button', ng-click="getCep()") Pesquisar
+        .container
+            h2 HTTP Get
+            .row
+                pre
+                    span GET /cep/:cep HTTP/1.1
+                    br
+                    span Host: cephack.azurewebsites.net
+
+        div(class="container", ng-show="showResults")
+            h2 Resultados
+            .row
+                table.table.table-bordered.table-striped
+                    tr
+                        th CEP
+                        th Logradouro
+                        th Bairro
+                        th Cidade
+                        th UF
+                    tr.active
+                        td#td-cep {{cep}}
+                        td#td-logradouro {{logradouro}}
+                        td#td-bairro {{bairro}}
+                        td#td-cidade {{cidade}}
+                        td#td-uf {{uf}}
+            h2 JSON
+            .row
+                pre#json-data {{jsonData}}
