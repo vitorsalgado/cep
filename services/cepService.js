@@ -64,27 +64,27 @@ function buildAddressFromCep($) {
     if (logradouroContainer.length) {
         address.logradouro = logradouroContainer.next().text().trim();
     } else {
-        address.logradouro = null;
+        address.logradouro = '';
     }
 
     if (bairroContainer.length) {
         address.bairro = bairroContainer.next().text().trim();
     } else {
-        address.bairro = null;
+        address.bairro = '';
     }
 
     if (cidadeEstadoContainer.length) {
         address.cidade = cidadeEstadoContainer.next().text().trim().split('/')[0].trim();
         address.uf = cidadeEstadoContainer.next().text().trim().split('/')[1].trim();
     } else {
-        address.cidade = null;
-        address.uf = null;
+        address.cidade = '';
+        address.uf = '';
     }
 
     if (cepContainer.length) {
         address.cep = cepContainer.next().text().trim();
     } else {
-        address.cep = null;
+        address.cep = '';
     }
 
     return address;
